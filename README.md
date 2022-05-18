@@ -1,5 +1,5 @@
-## Tugas pemrograman AI
+# Tugas pemrograman AI
 
-# Anggota:
+## Anggota:
 - Talitha Nabila
 - Yasir Khairul Malik
