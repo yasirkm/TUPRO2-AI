@@ -60,30 +60,39 @@ class Bengkel():
                 "mahal":"cukup"
             }    
         }
-        fuzzy_rating = {
+        fuzzy_score = {
             "baik":0,
             "cukup":0,
             "buruk":0
         }
         for service_key in fuzzy_service:
             for price_key in fuzzy_price:
-                rating_key = inference_table[service_key][price_key]
+                score_key = inference_table[service_key][price_key]
                 new_value = min(fuzzy_service[service_key], fuzzy_price[price_key])
-                fuzzy_rating[rating_key] = max(fuzzy_rating[rating_key], new_value)
+                fuzzy_score[score_key] = max(fuzzy_score[score_key], new_value)
 
-        return fuzzy_rating
+        return fuzzy_score
 
-    def defuzzification(self, fuzzy_rating):
-        pass
-    
-    #def membership_function(self):
+    def defuzzification(self, fuzzy_score):
+        dividend = 0
+        divisor = 0
+        for x in range(10,101,10):
+            thres_buruk = x*min(fuzzy_score["buruk"],((50-x)/(50-0)))
+            thres_cukup = x*max(0,min(((x-25)/(50-25), (75-x)(75-50))))
+            thres_baik = x*min(fuzzy_score["baik"],((x-50)/(100-50)))
 
-    #def service_partition(self):
-        
-    # def price_partition(self):
-        
-    def defuzzification(self):
-        #defuzzification = (service_partition * price_partition) / (service_partition + price_partition)
+            thres_buruk = max(0, thres_buruk)
+            thres_cukup = max(0, thres_cukup)
+            thres_baik = max(0, thres_baik)
+
+            score_thres = max(thres_buruk, thres_cukup, thres_baik)
+
+
+            dividend +=  x * score_thres
+            divisor += score_thres
+
+        score = dividend/divisor
+        return score
 
 
 if __name__ == "__main__":
