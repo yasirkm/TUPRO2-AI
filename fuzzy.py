@@ -94,7 +94,7 @@ class Bengkel():
         divisor = 0
         for x in range(10,101,10):
             thres_buruk = min(fuzzy_score["buruk"],((50-x)/(50-0)))
-            thres_cukup = max(0,min((x-25)/(50-25), (75-x)/(75-50)))
+            thres_cukup = min((x-25)/(50-25), (75-x)/(75-50))
             thres_baik = min(fuzzy_score["baik"],((x-50)/(100-50)))
 
             thres_buruk = max(0, thres_buruk)
