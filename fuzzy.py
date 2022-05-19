@@ -60,10 +60,21 @@ class Bengkel():
                 "mahal":"cukup"
             }    
         }
-        fuzzy_rating = {}
-        for service, price in zip(fuzzy_service, fuzzy_service):
+        fuzzy_rating = {
+            "baik":0,
+            "cukup":0,
+            "buruk":0
+        }
+        for service_key in fuzzy_service:
+            for price_key in fuzzy_price:
+                rating_key = inference_table[service_key][price_key]
+                new_value = min(fuzzy_service[service_key], fuzzy_price[price_key])
+                fuzzy_rating[rating_key] = max(fuzzy_rating[rating_key], new_value)
 
+        return fuzzy_rating
 
+    def defuzzification(self, fuzzy_rating):
+        pass
     
     #def membership_function(self):
 
