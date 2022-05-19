@@ -41,10 +41,28 @@ class Bengkel():
 
         return fuzzy_service, fuzzy_price
 
-    def inference(self):
+    def inference(self, fuzzy_service, fuzzy_price):
         '''inference rules '''
-        fuzzy_service, fuzzy_price = self.fuzzification()
-        inference = 
+        inference_table = {
+            "buruk": {
+                "murah":"cukup",
+                "sedang":"buruk",
+                "mahal":"buruk"
+            },
+            "biasa": {
+                "murah":"baik",
+                "sedang":"cukup",
+                "mahal":"buruk"
+            },
+            "bagus": {
+                "murah":"baik",
+                "sedang":"baik",
+                "mahal":"cukup"
+            }    
+        }
+        fuzzy_rating = {}
+        for service, price in zip(fuzzy_service, fuzzy_service):
+
 
     
     #def membership_function(self):
