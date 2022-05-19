@@ -1,8 +1,9 @@
-from openpyxl import load_workbook
+from openpyxl import Workbook, load_workbook
 from pathlib import Path
 
 FOLDER_PATH = Path(__file__).parent
 EXCEL_PATH = FOLDER_PATH/"bengkel.xlsx"
+OUTPUT_PATH = FOLDER_PATH/"top10.xlsx"
 
 def main():
     # Load excel file
@@ -18,8 +19,18 @@ def main():
     
     for bengkel in bengkel_list:
         print(bengkel.score)
-
     wb.close()
+
+    wb = Workbook()
+    ws = wb.active
+    ws.append(("id", "servis", "harga"))
+    for bengkel in bengkel_list[:10]:
+        ws.append(bengkel.get_data())
+    wb.save(OUTPUT_PATH)
+    wb.close()
+
+    #ws.cell(row=1,col)
+    #for row, 
 
 class Bengkel():
     def __init__(self, id, service, price):
@@ -98,6 +109,9 @@ class Bengkel():
 
         score = dividend/divisor
         return score
+    
+    def get_data(self):
+        return self.id, self.service, self.price
 
 
 if __name__ == "__main__":
