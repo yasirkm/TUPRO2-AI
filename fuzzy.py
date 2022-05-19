@@ -26,6 +26,10 @@ class Bengkel():
         self.service = service
         self.price = price
 
+        fuzzy_value = self.fuzzification()
+        fuzzy_value = self.inference(*fuzzy_value)
+        self.score = self.defuzzification(fuzzy_value)
+
     def fuzzification(self):
         fuzzy_service = {}
         fuzzy_price = {}
