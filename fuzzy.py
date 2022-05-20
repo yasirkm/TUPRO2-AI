@@ -111,8 +111,8 @@ class Bengkel():
         # divident and divisor initialization
         dividend = 0
         divisor = 0
-        # cumming dividends and divisors
         for x in range(10,101,10):
+            # Calculating threshold
             thres_buruk = min(fuzzy_score["buruk"],((50-x)/(50-0)))
             thres_cukup = min((x-25)/(50-25), (75-x)/(75-50))
             thres_baik = min(fuzzy_score["baik"],((x-50)/(100-50)))
@@ -124,6 +124,7 @@ class Bengkel():
             score_thres = max(thres_buruk, thres_cukup, thres_baik)
 
 
+            # summing dividends and divisors
             dividend +=  x * score_thres
             divisor += score_thres
 
