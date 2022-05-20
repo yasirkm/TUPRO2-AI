@@ -79,7 +79,7 @@ class Bengkel():
                 "mahal":"buruk"
             },
             "biasa": {
-                "murah":"baik",
+                "murah":"cukup",
                 "sedang":"cukup",
                 "mahal":"buruk"
             },
